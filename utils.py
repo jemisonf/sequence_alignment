@@ -18,12 +18,32 @@ class AlignmentUtils:
         return cost_dict
 
     def get_cost(self, x, y):
+        """Get the cost of substituting character x with character y
+
+        Args:
+            x (str): Character x
+            y (str): Character y
+
+        Returns:
+            int: The cost of substitution
+        """
+
         if x in self.cost_dict and y in self.cost_dict[x]:
             return self.cost_dict[x][y]
         else:
             exit(f'Error: could not find cost for ({x}, {y})')
 
     def get_pairs(self, filename='imp2input.txt'):
+        """Get the pairs of strings given in the input file
+
+        Args:
+            filename (str, optional): Defaults to 'imp2input.txt'. The name of
+                the input file
+
+        Returns:
+            List[Tuple[str, str]]: The list of all pairs of strings
+        """
+
         with open(filename) as f:
             pairs = list(map(
                 lambda it: tuple(it.strip('\n').split(',')),
@@ -32,6 +52,16 @@ class AlignmentUtils:
         return pairs
 
     def write_output(self, outputs, filename='imp2output.txt'):
+        """Writes the list of outputs to the output file
+
+        Args:
+            outputs (List[Tuple[str, str, int]]): A list of tuples where each
+                item is the first string, the second string, and the computed
+                edit distance, respectively
+            filename (str, optional): Defaults to 'imp2output.txt'. The output
+                filename
+        """
+
         with open(filename, 'w') as f:
             lines = list(map(
                 lambda it: f'{it[0]},{it[1]}:{it[2]}\n',
@@ -40,6 +70,20 @@ class AlignmentUtils:
             f.writelines(lines)
 
     def reconstruct_ptr(self, pair, ptr):
+        """Reconstruct a pair of strings using a backtrace
+
+        Args:
+            pair (Tuple[str, str]): A pair of strings. The first string should
+                correspond to the x-axis in ptr and the second string should
+                correspond to the y-axis
+            ptr (List[List[int]]): A backtrace 2-D list where each item
+                represents a DELETION, INSERTION, or ALIGNMENT
+
+        Returns:
+            Tuple[str, str]: The reconstructed strings, in the same order as
+                the strings given in pair
+        """
+
         DELETION = 0
         INSERTION = 1
         ALIGNMENT = 2

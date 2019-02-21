@@ -22,3 +22,19 @@ class AlignmentUtils:
             return self.cost_dict[x][y]
         else:
             exit(f'Error: could not find cost for ({x}, {y})')
+
+    def get_pairs(self, filename='imp2input.txt'):
+        with open(filename) as f:
+            pairs = list(map(
+                lambda it: tuple(it.strip('\n').split(',')),
+                f.readlines()
+            ))
+        return pairs
+
+    def write_output(self, outputs, filename='imp2output.txt'):
+        with open(filename, 'w') as f:
+            lines = list(map(
+                lambda it: f'{it[0]},{it[1]}:{it[2]}\n',
+                outputs
+            ))
+            f.writelines(lines)

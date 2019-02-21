@@ -2,9 +2,9 @@
 
 class AlignmentUtils:
     def __init__(self, cost_filename='imp2cost.txt'):
-        self.cost_dict = self.parse_cost_dict(cost_filename)
+        self.cost_dict = self.__parse_cost_dict(cost_filename)
 
-    def parse_cost_dict(self, filename):
+    def __parse_cost_dict(self, filename):
         cost_dict = {}
         with open(filename) as f:
             matrix = list(map(

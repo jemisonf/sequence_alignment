@@ -27,9 +27,9 @@ class Aligner:
     def align(self, seq_1, seq_2):
         self.D = [[ 0 for j in range(len(seq_2) + 1)] for i in range(len(seq_1) + 1)]
         ptr = [[ 0 for j in range(len(seq_2) + 1)] for i in range(len(seq_1) + 1)]
-        # 0 = DOWN
-        # 1 = LEFT
-        # 2 = DIAG
+        # 0 = DELETION
+        # 1 = INSERTION
+        # 2 = ALIGN
         for i in range(len(seq_1) + 1):
             self.D[i][0] = i
         for j in range(len(seq_2) + 1):

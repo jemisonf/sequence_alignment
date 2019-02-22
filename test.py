@@ -8,7 +8,7 @@ str1 = "AAATGTGTGTGTTCCCCAACGATGTCTCTAGAAGACGAACATCCC"
 str2 = "ACTAGATGGAAACGTGAACCTAACTAACACATATGGATCCGACTGACGTTCTCTGATGTAGCCT"
 n, ptr = aligner.align(str2, str1)
 print(n)
-str1_out, str2_out = utils.reconstruct_ptr([str1, str2], ptr)
+str1_out, str2_out = utils.reconstruct_ptr([str2, str1], ptr)
 print(str1_out)
 print(str2_out)
 

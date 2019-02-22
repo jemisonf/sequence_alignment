@@ -93,13 +93,13 @@ class AlignmentUtils:
         i = len(str1) - 1
         j = len(str2) - 1
         while i >= 0 and j >= 0:
-            if ptr[i][j] == DELETION:
-                str2 = str2[:(j + 1)] + '*' + str2[(j + 1):]
+            if ptr[i + 1][j + 1] == DELETION:
+                str2 = str2[:(j + 1)] + '-' + str2[(j + 1):]
                 i = i - 1
-            elif ptr[i][j] == INSERTION:
-                str1 = str1[:(i + 1)] + '*' + str1[(i + 1):]
+            elif ptr[i + 1][j + 1] == INSERTION:
+                str1 = str1[:(i + 1)] + '-' + str1[(i + 1):]
                 j = j - 1
-            elif ptr[i][j] == ALIGNMENT:
+            elif ptr[i + 1][j + 1] == ALIGNMENT:
                 i = i - 1
                 j = j - 1
             else:

@@ -1,14 +1,15 @@
-from align import Aligner
+from align import Aligner, print_matrix
 from utils import AlignmentUtils
 
 aligner = Aligner()
 utils = AlignmentUtils()
 
-str1 = "AAATGTGTGTGTTCCCCAACGATGTCTCTAGAAGACGAACATCCC"
-str2 = "ACTAGATGGAAACGTGAACCTAACTAACACATATGGATCCGACTGACGTTCTCTGATGTAGCCT"
-n, ptr = aligner.align(str2, str1)
+str1 = "AATC"
+str2 = "ATC"
+n, ptr = aligner.align(str1, str2)
 print(n)
-str1_out, str2_out = utils.reconstruct_ptr([str2, str1], ptr)
+print_matrix(ptr)
+str1_out, str2_out = utils.reconstruct_ptr([str1, str2], ptr)
 print(str1_out)
 print(str2_out)
 

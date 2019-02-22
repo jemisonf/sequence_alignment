@@ -42,12 +42,13 @@ class Aligner:
                                 self.insertion(i, j),
                                 self.alignment(i, j, seq_1, seq_2)
                 )
-                if (self.deletion(i, j) < self.insertion(i, j) and self.deletion(i, j) < self.alignment(i, j, seq_1, seq_2)):
+                if (self.D[i][j] == self.deletion(i, j)):
                     ptr[i][j] = 0
-                if (self.insertion(i, j) < self.deletion(i, j) and self.insertion(i, j) < self.alignment(i, j, seq_1, seq_2)):
+                elif (self.D[i][j] == self.insertion(i, j)):
                     ptr[i][j] = 1
                 else:
                     ptr[i][j] = 2
+        print_matrix(self.D)
         return self.D[len(seq_1)][len(seq_2)], ptr
 
 

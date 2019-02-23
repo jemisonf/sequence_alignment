@@ -90,18 +90,24 @@ class AlignmentUtils:
 
         str1 = pair[0]
         str2 = pair[1]
-        i = len(str1) - 1
-        j = len(str2) - 1
-        while i >= 0 and j >= 0:
-            if ptr[i + 1][j + 1] == DELETION:
-                str2 = str2[:(j + 1)] + '-' + str2[(j + 1):]
+        i = len(str1)
+        j = len(str2)
+        while not (i <= 0 or j <= 0):
+            if ptr[i][j] == DELETION:
+                str2 = str2[:j] + '-' + str2[j:]
                 i = i - 1
-            elif ptr[i + 1][j + 1] == INSERTION:
-                str1 = str1[:(i + 1)] + '-' + str1[(i + 1):]
+            elif ptr[i][j] == INSERTION:
+                str1 = str1[:i] + '-' + str1[i:]
                 j = j - 1
-            elif ptr[i + 1][j + 1] == ALIGNMENT:
+            elif ptr[i][j] == ALIGNMENT:
                 i = i - 1
                 j = j - 1
             else:
                 exit(f'Error: invalid value {ptr[i][j]} found in ptr')
+
+        while len(str1) < len(str2):
+            str1 = '-' + str1
+        while len(str2) < len(str1):
+            str2 = '-' + str2
+
         return (str1, str2)

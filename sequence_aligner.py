@@ -6,8 +6,9 @@ if __name__ == "__main__":
     pairs = aligner.utils.get_pairs()
     outputs = []
     for pair in pairs:
-        n, D = aligner.align(pair[0], pair[1])
-        alignments = aligner.utils.reconstruct_ptr(pair, D)
-        outputs.append([ alignments[0], alignments[1] , n])
+        n, ptr = aligner.align(pair[0], pair[1])
+        alignments = aligner.utils.reconstruct_ptr(pair, ptr)
+        output = (alignments[0], alignments[1], n)
+        outputs.append(output)
     aligner.utils.write_output(outputs)
 

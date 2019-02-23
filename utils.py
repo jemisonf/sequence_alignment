@@ -1,3 +1,5 @@
+import random
+import string
 
 
 class AlignmentUtils:
@@ -111,3 +113,18 @@ class AlignmentUtils:
             str2 = '-' + str2
 
         return (str1, str2)
+    
+    def make_pair(self, str_length):
+        str1 = "".join(random.choice("AGTC") for _ in range(str_length))
+        str2 = "".join(random.choice("AGTC") for _ in range(str_length))
+        return [str1, str2]
+
+    def write_input(self, pairs, filename="imp2input.txt"):
+        with open(filename, 'w') as f:
+            lines = list(map(
+                lambda it: f'{it[0]},{it[1]}\n',
+                pairs
+            ))
+            f.writelines(lines)
+
+

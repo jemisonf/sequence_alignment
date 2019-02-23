@@ -1,4 +1,3 @@
-from utils import AlignmentUtils
 from align import Aligner
 
 
